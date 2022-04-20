@@ -52,15 +52,11 @@ class Window(QWidget):
 
 def create_autoStereogram(fileName):
 
-    print("File Name", fileName)
-
     depth_map = cv2.imread(fileName)
     depth_map = cv2.cvtColor(depth_map, cv2.COLOR_BGR2GRAY)
 
     size_x, size_y = depth_map.shape
     pattern = np.random.uniform(0, 1, (size_y, 64, 1))
-
-    cv2.imshow("pattern", pattern)
 
     def autostereogram(depth_map, pattern):
         E = 0.1
@@ -93,7 +89,4 @@ def create_autoStereogram(fileName):
 App = QApplication(sys.argv)
 window = Window()
 sys.exit(App.exec())
-
-
-
 
