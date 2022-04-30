@@ -10,6 +10,9 @@ source ve/bin/activate
 pip install -r requirements.txt
 ```
 
+## Example
+![example autostereogram](./examples/1024x768.png)
+
 ### Authors
 
 * GRIMAU Florent
