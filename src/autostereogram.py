@@ -60,7 +60,6 @@ def create_autoStereogram(filename, grayscale=False):
         pattern = np.random.uniform(0, 1, (size_y, 64, 3))
 
     final_image = autostereogram(depth_map, pattern, grayscale)
-    cv2.imwrite('autostereogram.png', 255 * final_image)
     return final_image
 
 
