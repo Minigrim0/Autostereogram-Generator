@@ -1,8 +1,7 @@
-from PyQt5.QtWidgets import QApplication,QWidget, QVBoxLayout, QPushButton, QFileDialog , QLabel, QTextEdit, QSizePolicy, QHBoxLayout, QLineEdit, QMessageBox
-from PyQt5.QtGui import QPixmap, QFont
+from PyQt5.QtWidgets import (
+    QWidget, QVBoxLayout, QPushButton, QLabel, QSizePolicy, QHBoxLayout)
+from PyQt5.QtGui import QFont
 from PyQt5.QtCore import QRect, Qt, QCoreApplication, QMetaObject
-
-from src.autostereogram import create_autoStereogram
 
 
 class UI_MainWindow(object):
@@ -21,7 +20,8 @@ class UI_MainWindow(object):
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(30)
-        sizePolicy.setHeightForWidth(self.Title.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.Title.sizePolicy().hasHeightForWidth())
         self.Title.setSizePolicy(sizePolicy)
         font = QFont()
         font.setPointSize(20)
@@ -44,7 +44,7 @@ class UI_MainWindow(object):
         font1 = QFont()
         font1.setPointSize(14)
         self.ImagePreviewLabel.setFont(font1)
-        self.ImagePreviewLabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+        self.ImagePreviewLabel.setAlignment(Qt.AlignHCenter | Qt.AlignTop)
 
         self.verticalLayoutOriginal.addWidget(self.ImagePreviewLabel)
 
@@ -60,7 +60,7 @@ class UI_MainWindow(object):
         self.ImageResultLabel = QLabel(self.verticalLayoutWidget)
         self.ImageResultLabel.setObjectName(u"ImageResultLabel")
         self.ImageResultLabel.setFont(font1)
-        self.ImageResultLabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+        self.ImageResultLabel.setAlignment(Qt.AlignHCenter | Qt.AlignTop)
 
         self.verticalLayoutResult.addWidget(self.ImageResultLabel)
 
@@ -78,9 +78,16 @@ class UI_MainWindow(object):
         QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
-        self.Title.setText(QCoreApplication.translate("Dialog", u"Autostereogram Generator", None))
-        self.ImagePreviewLabel.setText(QCoreApplication.translate("Dialog", u"Map Preview", None))
-        self.LoadImage.setText(QCoreApplication.translate("Dialog", u"Select an image", None))
-        self.ImageResultLabel.setText(QCoreApplication.translate("Dialog", u"Result", None))
-        self.SaveImage.setText(QCoreApplication.translate("Dialog", u"Save Image", None))
+        Dialog.setWindowTitle(
+            QCoreApplication.translate("Dialog", u"Dialog", None))
+        self.Title.setText(
+            QCoreApplication.translate(
+                "Dialog", u"Autostereogram Generator", None))
+        self.ImagePreviewLabel.setText(
+            QCoreApplication.translate("Dialog", u"Map Preview", None))
+        self.LoadImage.setText(
+            QCoreApplication.translate("Dialog", u"Select an image", None))
+        self.ImageResultLabel.setText(
+            QCoreApplication.translate("Dialog", u"Result", None))
+        self.SaveImage.setText(
+            QCoreApplication.translate("Dialog", u"Save Image", None))

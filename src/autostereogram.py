@@ -1,4 +1,3 @@
-#To Perform the Stereogram functions
 import numpy as np
 import math
 import cv2
@@ -12,7 +11,8 @@ def autostereogram(depth_map, pattern):
 
     for row in range(depth_map.shape[0]):
         for column in range(depth_map.shape[1]):
-            if column < pattern.shape[1]:  # If the current column is smaller than the amount of columns in the pattern
+            # If the current column is smaller than the amount of columns in the pattern
+            if column < pattern.shape[1]:
                 # Copy in the current row/col the pattern
                 autostereogram[row, column] = pattern[row % pattern.shape[0], column]
             else:
@@ -30,7 +30,6 @@ def create_autoStereogram(fileName):
 
     size_x, size_y = depth_map.shape
     pattern = np.random.uniform(0, 1, (size_y, 64, 1))
-
 
     final_image = autostereogram(depth_map, pattern)
     return final_image
