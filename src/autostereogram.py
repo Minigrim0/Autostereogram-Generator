@@ -55,12 +55,15 @@ def create_autoStereogram(filename, grayscale=False):
     # Create the random pattern
     size_x, size_y = depth_map.shape
     if grayscale:
+        print("Yay")
         pattern = np.random.uniform(0, 1, (size_y, 64, 1))
     else:
         pattern = np.random.uniform(0, 1, (size_y, 64, 3))
 
     final_image = autostereogram(depth_map, pattern, grayscale)
-    return final_image
+    if grayscale:
+        return final_image.reshape((depth_map.shape[0], depth_map.shape[1], 1))
+    return final_image.reshape((depth_map.shape[0], depth_map.shape[1], 3))
 
 
 if __name__ == "__main__":

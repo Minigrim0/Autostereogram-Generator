@@ -1,6 +1,6 @@
-from PyQt5.QtWidgets import QFileDialog
-from PyQt5.QtGui import QPixmap, QImage
-from PyQt5.QtWidgets import QMainWindow
+from PyQt6.QtWidgets import QFileDialog
+from PyQt6.QtGui import QPixmap, QImage
+from PyQt6.QtWidgets import QMainWindow
 
 import cv2
 
@@ -15,6 +15,7 @@ class Window(QMainWindow, Ui_Dialog):
         self.show()
 
         self.result = None
+        self.current_preview_grascale = False
 
     def setupUi(self, Dialog):
         super().setupUi(Dialog)
@@ -27,12 +28,18 @@ class Window(QMainWindow, Ui_Dialog):
         pixmap = QPixmap(imagePath)
         self.MapPreview.setPixmap(QPixmap(pixmap))
 
-        self.result = create_autoStereogram(fname[0])
+        self.current_preview_grascale = self.checkBox.isChecked()
+        self.result = create_autoStereogram(fname[0], self.current_preview_grascale)
 
         h, w = self.result.shape[:2]
-        bytesPerLine = 3 * w
-        qimage = QImage(
-            self.result.data, w, h, bytesPerLine, QImage.Format.Format_RGB888)
+        if self.current_preview_grascale:
+            bytesPerLine = w
+            qimage = QImage(
+                self.result.data, w, h, bytesPerLine, QImage.Format.Format_Grayscale8)
+        else:
+            bytesPerLine = 3 * w
+            qimage = QImage(
+                self.result.data, w, h, bytesPerLine, QImage.Format.Format_RGB888)
 
         self.ResultPreview.setPixmap(QPixmap(qimage))
 

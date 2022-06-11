@@ -8,9 +8,9 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import *
+from PyQt6.QtCore import *
+from PyQt6.QtGui import *
+from PyQt6.QtWidgets import *
 
 
 class Ui_Dialog(object):
@@ -26,7 +26,7 @@ class Ui_Dialog(object):
         self.MainBox.setContentsMargins(0, 0, 0, 0)
         self.Title = QLabel(self.verticalLayoutWidget)
         self.Title.setObjectName(u"Title")
-        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(30)
         sizePolicy.setHeightForWidth(self.Title.sizePolicy().hasHeightForWidth())
@@ -38,8 +38,8 @@ class Ui_Dialog(object):
         font.setUnderline(True)
         font.setWeight(75)
         self.Title.setFont(font)
-        self.Title.setTextFormat(Qt.RichText)
-        self.Title.setAlignment(Qt.AlignCenter)
+        self.Title.setTextFormat(Qt.TextFormat.RichText)
+        self.Title.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.MainBox.addWidget(self.Title)
 
@@ -49,7 +49,7 @@ class Ui_Dialog(object):
         self.verticalLayoutOriginal.setObjectName(u"verticalLayoutOriginal")
         self.ImagePreviewLabel = QLabel(self.verticalLayoutWidget)
         self.ImagePreviewLabel.setObjectName(u"ImagePreviewLabel")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.ImagePreviewLabel.sizePolicy().hasHeightForWidth())
@@ -57,7 +57,7 @@ class Ui_Dialog(object):
         font1 = QFont()
         font1.setPointSize(14)
         self.ImagePreviewLabel.setFont(font1)
-        self.ImagePreviewLabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+        self.ImagePreviewLabel.setAlignment(Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignTop)
 
         self.verticalLayoutOriginal.addWidget(self.ImagePreviewLabel)
 
@@ -81,7 +81,7 @@ class Ui_Dialog(object):
         sizePolicy1.setHeightForWidth(self.ImageResultLabel.sizePolicy().hasHeightForWidth())
         self.ImageResultLabel.setSizePolicy(sizePolicy1)
         self.ImageResultLabel.setFont(font1)
-        self.ImageResultLabel.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
+        self.ImageResultLabel.setAlignment(Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignTop)
 
         self.verticalLayoutResult.addWidget(self.ImageResultLabel)
 
@@ -92,6 +92,11 @@ class Ui_Dialog(object):
 
         self.SaveImage = QPushButton(self.verticalLayoutWidget)
         self.SaveImage.setObjectName(u"SaveImage")
+
+        self.checkBox = QCheckBox(self.verticalLayoutWidget)
+        self.checkBox.setObjectName(u"IsGrayscale")
+        self.checkBox.setText(QCoreApplication.translate("Dialog", u"Use grayscale", None))
+        self.checkBox.setGeometry(10, 350, 100, 15)
 
         self.verticalLayoutResult.addWidget(self.SaveImage)
 
