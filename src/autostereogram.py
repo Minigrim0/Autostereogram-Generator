@@ -12,8 +12,6 @@ def autostereogram(depth_map, pattern, grayscale):
         shape=[depth_map.shape[0], depth_map.shape[1], 1 if grayscale else 3],
         dtype=pattern.dtype)
 
-    print("Auto: ", autostereogram.nbytes)
-
     for row in range(depth_map.shape[0]):
         for column in range(depth_map.shape[1]):
             # If the current column is smaller than the amount of columns
