@@ -8,14 +8,11 @@ def autostereogram(depth_map, pattern, grayscale):
     E = 0.1
     b = 1.0  # Distance between the near and far plane
     a = 2  # Distance between the autostereogram plane and the near plane
-    if grayscale:
-        autostereogram = np.zeros(
-            shape=[depth_map.shape[0], depth_map.shape[1], 1],
-            dtype=pattern.dtype)
-    else:
-        autostereogram = np.zeros(
-            shape=[depth_map.shape[0], depth_map.shape[1], 3],
-            dtype=pattern.dtype)
+    autostereogram = np.zeros(
+        shape=[depth_map.shape[0], depth_map.shape[1], 1 if grayscale else 3],
+        dtype=pattern.dtype)
+
+    print("Auto: ", autostereogram.nbytes)
 
     for row in range(depth_map.shape[0]):
         for column in range(depth_map.shape[1]):
@@ -55,15 +52,12 @@ def create_autoStereogram(filename, grayscale=False):
     # Create the random pattern
     size_x, size_y = depth_map.shape
     if grayscale:
-        print("Yay")
         pattern = np.random.uniform(0, 1, (size_y, 64, 1))
     else:
         pattern = np.random.uniform(0, 1, (size_y, 64, 3))
 
-    final_image = autostereogram(depth_map, pattern, grayscale)
-    if grayscale:
-        return final_image.reshape((depth_map.shape[0], depth_map.shape[1], 1))
-    return final_image.reshape((depth_map.shape[0], depth_map.shape[1], 3))
+    # Return the final image
+    return autostereogram(depth_map, pattern, grayscale)
 
 
 if __name__ == "__main__":
