@@ -5,7 +5,7 @@ import cv2
 
 def autostereogram(depth_map, pattern, grayscale):
     """This function implements the autostereogram algorithm"""
-    E = 0.1
+    E = 3  # Distance between the observer's eyes (inches)
     b = 1.0  # Distance between the near and far plane
     a = 2  # Distance between the autostereogram plane and the near plane
     autostereogram = np.zeros(
@@ -27,7 +27,7 @@ def autostereogram(depth_map, pattern, grayscale):
             s_on_two = math.floor(
                 (
                     ((a - (b * grey_value / 255)) * E) / 2 *
-                    (1 + a - (b * grey_value))
+                    (1 + a - (b * grey_value / 255))
                 ) + 0.5
             )
             autostereogram[row][column] = autostereogram[
